@@ -1,0 +1,9 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+  <p>Are you sure you want to delete: {{ topic }}?</p>
+  <form action="{% url 'quotes:delete_topic' topic.id %}" method="post">
+    {% csrf_token %}
+    <button name="submit">Delete Topic</button>
+  </form>
+{% endblock content %}

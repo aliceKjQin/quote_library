@@ -1,0 +1,23 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+    <p>Quotes about: {{ topic.text }}</p>
+
+    <p>
+        <a href="{% url 'quotes:new_quote' topic.id %}">Add new quote</a>
+    </p>
+
+    <ul>
+        {% for quote in quotes %}
+        <li>
+            <p>{{ quote }}</p>
+            <p>
+                <a href="{% url 'quotes:edit_quote' quote.id %}">Edit quote</a>
+            </p>
+        </li>
+        {% empty %}
+        <li>No quotes have been added yet.</li>
+        {% endfor %}
+    </ul>
+    
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+    <p><a href="{% url 'quotes:topic' topic.id %}">{{ topic }}</a></p>
+
+    <p>Edit quote:</p>
+
+    <form action="{% url 'quotes:topic' topic.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <input type="submit">
+    </form>
+{% endblock content %}
