@@ -112,6 +112,19 @@ def delete_topic(request, topic_id):
         'topic': topic,
     })
 
+@login_required
+def delete_quote(request, quote_id):
+    quote = get_object_or_404(Quote, id=quote_id)
+    check_topic_owner(quote.topic, request.user)
+
+    if request.method == 'POST':
+        quote.delete()
+        return redirect('quotes:topic', quote.topic.id)
+    
+    return render(request, 'quotes/delete_quote.html', {
+        'quote':quote,
+    })
+
 
 def check_topic_owner(topic, user):
     """Make sure the currently logged-in user owns the topic that's being

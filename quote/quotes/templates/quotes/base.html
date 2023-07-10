@@ -1,21 +1,26 @@
-<p>
-  <a href="{% url 'quotes:index' %}">Quote Library</a> - 
-  <a href="{% url 'quotes:topics' %}">Topics</a> -
-  {% if user.is_authenticated %}
-    Hello, {{ user.username|title }}.
-  {% else %}
-    <a href="{% url 'accounts:register' %}">Register</a> -
-    <a href="{% url 'accounts:login' %}">Log in</a>
-  {% endif %}
-</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quote Lock</title>
 
-{% block content %}
-{% endblock content %}
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 
-{% if user.is_authenticated %}
-  <hr>
-  <form action="{% url 'accounts:logout' %}" method="post">
-    {% csrf_token %}
-    <button name="submit">Log out</button>
-  </form>
-{% endif %}
+    <link rel="stylesheet" type="text/css" href="#">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'quotes:index' %}">Quote Lock(changes)</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
+        aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+    </nav>
+  </body>
+</html>

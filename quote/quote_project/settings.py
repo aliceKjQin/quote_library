@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     'quotes',
     'accounts',
 
+    #third party apps
+    'django_bootstrap5',
+
     #default apps
     'django.contrib.admin',
     'django.contrib.auth',

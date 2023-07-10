@@ -12,7 +12,8 @@
         <li>
             <p>{{ quote }}</p>
             <p>
-                <a href="{% url 'quotes:edit_quote' quote.id %}">Edit quote</a>
+                <a href="{% url 'quotes:edit_quote' quote.id %}">edit</a>
+                <a href="{% url 'quotes:delete_quote' quote.id %}">delete</a>
             </p>
         </li>
         {% empty %}
