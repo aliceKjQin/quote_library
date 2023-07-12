@@ -98,6 +98,24 @@ def edit_quote(request, quote_id):
     })
 
 @login_required
+def edit_topic(request, topic_id):
+    topic = Topic.objects.get(id=topic_id)
+    check_topic_owner(topic, request.user)
+
+    if request.method != 'POST':
+        form = TopicForm(instance=topic)
+    else:
+        form = TopicForm(instance=topic, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('quotes:topics')
+        
+    return render(request, 'quotes/edit_topic.html', {
+        'topic': topic,
+        'form': form,
+    })
+
+@login_required
 def delete_topic(request, topic_id):
     # Get the topic that needs to delete
     topic = get_object_or_404(Topic, id=topic_id)

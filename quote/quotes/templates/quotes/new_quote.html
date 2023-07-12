@@ -1,13 +1,17 @@
 {% extends 'quotes/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+    <h2><a href="{% url 'quotes:topic' topic.id %}">{{ topic }}</a></h2>
+{% endblock page_header %}
 
 {% block content %}
-<a href="{% url 'quotes:topic' topic.id %}">{{ topic }}</a>
 
-<p>Add a new quote:</p>
-<form action="{% url 'quotes:new_quote' topic.id %}" method="post">
-    {% csrf_token %}
-    {{ form.as_div }}
-    <input type="submit">
-</form>
+    <p>Add a new quote:</p>
+    <form action="{% url 'quotes:new_quote' topic.id %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Add quote" class="btn btn-primary btn-lg">
+    </form>
 
 {% endblock content %}

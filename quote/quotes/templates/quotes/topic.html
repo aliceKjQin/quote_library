@@ -1,24 +1,26 @@
 {% extends 'quotes/base.html' %}
 
-{% block content %}
-    <p>Quotes about: {{ topic.text }}</p>
+{% block page_header %}
+    <h1>Quotes about: {{ topic.text }}</h1>
+{% endblock page_header %}
 
+{% block content %}
     <p>
         <a href="{% url 'quotes:new_quote' topic.id %}">Add new quote</a>
     </p>
 
-    <ul>
-        {% for quote in quotes %}
-        <li>
-            <p>{{ quote }}</p>
-            <p>
-                <a href="{% url 'quotes:edit_quote' quote.id %}">edit</a>
-                <a href="{% url 'quotes:delete_quote' quote.id %}">delete</a>
-            </p>
-        </li>
-        {% empty %}
-        <li>No quotes have been added yet.</li>
-        {% endfor %}
-    </ul>
-    
+    {% for quote in quotes %}
+        <div class="card mb-3">
+            <h4 class="card-header">
+                <small><a href="{% url 'quotes:edit_quote' quote.id%}">edit</a></small>
+                <small><a href="{% url 'quotes:delete_quote' quote.id %}">delete</a></small>
+            </h4>
+            <div class="card-body">
+                {{ quote.text|linebreaks }}
+            </div>
+        </div>
+    {% empty %}
+        <p>No quotes have been added yet.</p>
+    {% endfor %}
 {% endblock content %}
+    

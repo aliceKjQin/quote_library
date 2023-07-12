@@ -1,11 +1,14 @@
 {% extends 'quotes/base.html' %}
 
-{% block content %}
+{% block page_header %}
   <h2>Are you sure to delete this quote?</h2>
+{% endblock page_header %}
+
+{% block content %}
 
   <form action="{% url 'quotes:delete_quote' quote.id %}" method="post">
     {% csrf_token %}
-    <input type="submit" value="Delete">
+    <input type="submit" value="Delete" class="btn btn-primary btn-lg">
   </form>
 
 {% endblock content %}

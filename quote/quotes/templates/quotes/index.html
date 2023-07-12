@@ -1,5 +1,15 @@
 {% extends 'quotes/base.html' %}
 
-{% block content %}
-<p>Quote Lock helps you to keep track of your favorite quotes, and unlock your inner power!</p>
-{% endblock content %}
+{% block page_header %}
+  <div class="p-3 mb-4 bg-light border rounded-3">
+    <div class="container-fluid py-4">
+      <h1 class="display-3">Unlock your inner power!</h1>
+
+      <p class="lead">Make your own quote library, and keep a list of topics you're interested in. Whenever you come across a new quote about a topic, write it down and keep tracking of your favorite quotes.</p>
+
+      <a class="btn btn-primary btn-lg mt-1" href="{% url 'accounts:register' %}">Register &raquo</a>
+    </div>
+
+  </div>
+{% endblock page_header %}
+

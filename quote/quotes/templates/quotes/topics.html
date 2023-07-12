@@ -1,19 +1,27 @@
 {% extends 'quotes/base.html' %}
 
+{% block page_header %}
+    <h2>Topics</h2>
+{% endblock page_header %}
+
 {% block content %}
 
-    <p>Topics</p>
+    {% for topic in topics %}
+        <div class="card mb-3">
 
-    <ul>
-        {% for topic in topics %}
-            <li>
-                <a href="{% url 'quotes:topic' topic.id %}">{{ topic.text }}</a> 
-                (<a href="{% url 'quotes:delete_topic' topic.id %}">delete the topic</a>)
-            </li>
-        {% empty %}
-            <li>No topics have been added yet.</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'quotes:new_topic' %}">Add a new topic</a>
+            <h4 class="card-header">
+                <a href="{% url 'quotes:topic' topic.id %}">{{ topic.text|linebreaks }}</a>
+            </h4>
+            <div class="card-body">
+                <small><a href="{% url 'quotes:delete_topic' topic.id %}">delete</a></small>
+                <small><a href="{% url 'quotes:edit_topic' topic.id %}">edit</a></small>
+            </div>
+            
+        </div>
+    {% empty %}
+        <p>No topics have been added yet.<p>
+    {% endfor %}
+
+<a href="{% url 'quotes:new_topic' %}">Add a new topic</a>
 
 {% endblock content %}

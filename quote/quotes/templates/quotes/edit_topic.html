@@ -1,0 +1,16 @@
+{% extends 'quotes/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+  <h2>Edit topic:</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+  <form action="{% url 'quotes:edit_topic' topic.id %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="Save changes" class="btn btn-primary btn=lg">
+  </form>
+
+{% endblock content %}
